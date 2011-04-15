@@ -1,6 +1,6 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>User Registration</title>
+	<title> Registration</title>
 </head>
 
 <body>

@@ -20,10 +20,9 @@
 			<thead>
 				<tr>
 					<g:sortableColumn property="id" title="Id" />
-					<g:sortableColumn property="username" title="Login Name" />
-					<g:sortableColumn property="userRealName" title="Full Name" />
-					<g:sortableColumn property="enabled" title="Enabled" />
-					<g:sortableColumn property="description" title="Description" />
+					<g:sortableColumn property="nombre" title="Nombre" />
+					<g:sortableColumn property="email" title="Email" />
+					<g:sortableColumn property="telefono" title="Telefono" />
 					<th>&nbsp;</th>
 				</tr>
 			</thead>
@@ -31,13 +30,12 @@
 			<g:each in="${personList}" status="i" var="person">
 				<tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 					<td>${person.id}</td>
-					<td>${person.username?.encodeAsHTML()}</td>
-					<td>${person.userRealName?.encodeAsHTML()}</td>
-					<td>${person.enabled?.encodeAsHTML()}</td>
-					<td>${person.description?.encodeAsHTML()}</td>
+					<td>${person.nombre?.encodeAsHTML()}</td>
+					<td>${person.email?.encodeAsHTML()}</td>
+					<td>${person.telefono?.encodeAsHTML()}</td>
 					<td class="actionButtons">
 						<span class="actionButton">
-							<g:link action="show" id="${person.id}">Show</g:link>
+							<g:link action="show" id="${person.id}">Mostrar</g:link>
 						</span>
 					</td>
 				</tr>

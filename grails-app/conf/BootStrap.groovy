@@ -1,5 +1,7 @@
 class BootStrap {
 
+  def authenticateService
+
     def init = { servletContext ->
 
       //-------------------------------------------------ACEGI---------------------------------------------------------
@@ -7,45 +9,46 @@ class BootStrap {
       log.info "Comprobando ROLES en BBDD ..."
 
       try {
-        def role = Role.findByAuthority('ROLE_ADMIN')
+        def role = Role.findByAuthority('ROL_ADMINISTRADOR')
 
         if (!role.any()) {
-          def roleAdmin = new Role(authority: 'ROL_ADMINISTRADOR', description: 'Administrador').save()
-          def roleUser = new Role(authority: 'ROL_DISTRIBUIDOR', description: 'Distribuidor').save()
-          def roleRRHH = new Role(authority: 'ROL_CLIENTE', description: 'Cliente').save()
-          def roleVU = new Role(authority: 'ROL_TECNICO', description: 'Tecnico').save()
-          def roleMARK = new Role(authority: 'ROL_CALIDAD', description: 'Calidad').save()
+          def roleAdministrador = new Role(authority: 'ROL_ADMINISTRADOR', description: 'Administrador').save()
+          def roleDistribuidor = new Role(authority: 'ROL_DISTRIBUIDOR', description: 'Distribuidor').save()
+          def roleCliente = new Role(authority: 'ROL_CLIENTE', description: 'Cliente').save()
+          def roleCoordinador = new Role(authority: 'ROL_COORDINADOR', description: 'Coordinador').save()
+          def roleTecnico = new Role(authority: 'ROL_TECNICO', description: 'Tecnico').save()
+          def roleCalidad = new Role(authority: 'ROL_CALIDAD', description: 'Calidad').save()
 
           //Adding Users
-//          def admin = new User(nombre: 'administrador', email:, telefono: , passwd: ).save()
-//          def userAdmin = new User(username: 'useradmin',
-//                  userRealName: 'administrador del sistema').save()
-//          def userUser = new UserSayc(username: 'useruser',
-//                  userRealName: 'usuario standard').save()
-//          def userRRHH = new UserSayc(username: 'userrrhh',
-//                  userRealName: 'recursos humanos').save()
-//          def userVu = new UserSayc(username: 'uservu',
-//                  userRealName: 'ventanilla œnica').save()
-//          def userMark = new UserSayc(username: 'usermark',
-//                  userRealName: 'usuario de marketing').save()
+
+          def passwordd = authenticateService.passwordEncoder('admin')
+
+          def userAdministrador = new User(nombre: 'admin', email: 'admin@ufv.es', telefono: '', passwd: passwordd).save()
+          def userDistribuidor = new User(nombre: 'userdistribuidor', email: '', telefono: '', pass: 'userdistribuidor').save()
+          def userCliente = new User(nombre: 'usercliente', email: '', telefono: '', pass: 'usercliente').save()
+          def userCoordinador = new User(nombre: 'usercoordinador', email: '', telefono: '', pass: 'usercoordinador').save()
+          def userTecnico = new User(nombre: 'usertecnico', email: '', telefono: '', pass: 'usertecnico').save()
+          def userCalidad = new User(nombre: 'usercalidad', email: '', telefono: '', pass: 'usercalidad').save()
 
           //Note that here we associate users with their respective roles
-//          roleAdmin.addToPeople(admin)
-//          roleUser.addToPeople(admin)
-//          roleRRHH.addToPeople(admin)
-//          roleVU.addToPeople(admin)
-//          roleMARK.addToPeople(admin)
-//          roleAdmin.addToPeople(userAdmin)
-//          roleUser.addToPeople(userUser)
-//          roleRRHH.addToPeople(userRRHH)
-//          roleVU.addToPeople(userVu)
-//          roleMARK.addToPeople(userMark)
+          roleAdministrador.addToPeople(userAdministrador)
+          roleDistribuidor.addToPeople(userDistribuidor)
+          roleCliente.addToPeople(userCliente)
+          roleCoordinador.addToPeople(userCoordinador)
+          roleTecnico.addToPeople(userTecnico)
+          roleCalidad.addToPeople(userCalidad)
         }
-        log.info "ROLES en BBDD OK"
+        log.info "ROLES y USUARIOS por defecto, en BBDD OK"
       } catch (Exception e) {
-        log.error "Excepcion en la comprobacion de Roles en BBDD. ERROR - "
+        log.error "Excepcion en la comprobacion de Roles en BBDD. ERROR - ${e.message}"
+
 //        despliegueOK = false
       }
+
+
+//new Requestmap(url: '/login/**', configAttribute: 'IS_AUTHENTICATED_ANONYMOUSLY').save()
+//new Requestmap(url: '/secure/**', configAttribute: 'ROL_ADMIN').save()
+
 
     }
     def destroy = {

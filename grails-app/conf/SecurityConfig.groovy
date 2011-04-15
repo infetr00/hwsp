@@ -1,10 +1,12 @@
 security {
 
-	// see DefaultSecurityConfig.groovy for all settable/overridable properties
+  // see DefaultSecurityConfig.groovy for all settable/overridable properties
 
-	active = true
+  active = true
 
-	loginUserDomainClass = "User"
-	authorityDomainClass = "Role"
-	requestMapClass = "Requestmap"
+  loginUserDomainClass = "User"
+  authorityDomainClass = "Role"
+  requestMapClass = "Requestmap"
+
+  useRequestMapDomainClass = true
 }

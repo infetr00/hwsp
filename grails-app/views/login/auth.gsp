@@ -51,7 +51,7 @@
 			<div class='fheader'>Please Login..</div>
 			<form action='${postUrl}' method='POST' id='loginForm' class='cssform'>
 				<p>
-					<label for='j_username'>Login ID</label>
+					<label for='j_username'>Email</label>
 					<input type='text' class='text_' name='j_username' id='j_username' value='${request.remoteUser}' />
 				</p>
 				<p>

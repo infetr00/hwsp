@@ -26,16 +26,9 @@
 				<tbody>
 
 					<tr class="prop">
-						<td valign="top" class="name"><label for="username">Login Name:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'username','errors')}">
-							<input type="text" id="username" name="username" value="${person.username?.encodeAsHTML()}"/>
-						</td>
-					</tr>
-
-					<tr class="prop">
-						<td valign="top" class="name"><label for="userRealName">Full Name:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'userRealName','errors')}">
-							<input type="text" id="userRealName" name="userRealName" value="${person.userRealName?.encodeAsHTML()}"/>
+						<td valign="top" class="name"><label for="nombre">Nombre:</label></td>
+						<td valign="top" class="value ${hasErrors(bean:person,field:'nombre','errors')}">
+							<input type="text" id="nombre" name="nombre" value="${person.nombre?.encodeAsHTML()}"/>
 						</td>
 					</tr>
 
@@ -47,20 +40,6 @@
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><label for="enabled">Enabled:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'enabled','errors')}">
-							<g:checkBox name="enabled" value="${person.enabled}" ></g:checkBox>
-						</td>
-					</tr>
-
-					<tr class="prop">
-						<td valign="top" class="name"><label for="description">Description:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'description','errors')}">
-							<input type="text" id="description" name="description" value="${person.description?.encodeAsHTML()}"/>
-						</td>
-					</tr>
-
-					<tr class="prop">
 						<td valign="top" class="name"><label for="email">Email:</label></td>
 						<td valign="top" class="value ${hasErrors(bean:person,field:'email','errors')}">
 							<input type="text" id="email" name="email" value="${person.email?.encodeAsHTML()}"/>
@@ -68,19 +47,19 @@
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><label for="emailShow">Show Email:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'emailShow','errors')}">
-							<g:checkBox name="emailShow" value="${person.emailShow}"/>
+						<td valign="top" class="name"><label for="telefono">Teléfono:</label></td>
+						<td valign="top" class="value ${hasErrors(bean:person,field:'email','errors')}">
+							<input type="text" id="telefono" name="telefono" value="${person.telefono?.encodeAsHTML()}"/>
 						</td>
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name" align="left">Assign Roles:</td>
+						<td valign="top" class="name" align="left">Asignar Roles:</td>
 					</tr>
 
 					<g:each in="${authorityList}">
 					<tr>
-						<td valign="top" class="name" align="left">${it.authority.encodeAsHTML()}</td>
+						<td valign="top" class="name" align="left">${it.description.encodeAsHTML()}</td>
 						<td align="left"><g:checkBox name="${it.authority}"/></td>
 					</tr>
 					</g:each>

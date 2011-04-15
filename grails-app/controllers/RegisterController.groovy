@@ -163,9 +163,8 @@ class RegisterController {
 
 		def pass = authenticateService.encodePassword(params.passwd)
 		person.passwd = pass
-		person.enabled = true
-		person.emailShow = true
-		person.description = ''
+//		person.emailShow = true
+//		person.description = ''
 		if (person.save()) {
 			role.addToPeople(person)
 			if (config.security.useMail) {
@@ -176,7 +175,7 @@ class RegisterController {
  Here are the details of your account:
  -------------------------------------
  Email: ${person.email}
- Nombre: ${person.userRealName}
+ Nombre: ${person.nombre}
  Telefono: ${person.telefono}
  Contrase–a: ${params.passwd}
 """

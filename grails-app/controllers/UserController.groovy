@@ -31,7 +31,7 @@ class UserController {
 		}
 		List roleNames = []
 		for (role in person.authorities) {
-			roleNames << role.authority
+			roleNames << role.description
 		}
 		roleNames.sort { n1, n2 ->
 			n1 <=> n2
@@ -136,7 +136,7 @@ class UserController {
 
 	private void addRoles(person) {
 		for (String key in params.keySet()) {
-			if (key.contains('ROLE') && 'on' == params.get(key)) {
+			if (key.contains('ROL') && 'on' == params.get(key)) {
 				Role.findByAuthority(key).addToPeople(person)
 			}
 		}
