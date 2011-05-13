@@ -1,3 +1,5 @@
+package hwsp
+
 import org.codehaus.groovy.grails.plugins.springsecurity.RedirectUtils
 import org.grails.plugins.springsecurity.service.AuthenticateService
 
@@ -30,45 +32,59 @@ class LoginController {
   private final authenticationTrustResolver = new AuthenticationTrustResolverImpl()
 
   def index = {
-    if (isLoggedIn()) {
-      redirect uri: '/'
-    }
-    else {
-      redirect action: auth, params: params
-    }
+    log.info "CONTROLLER: login, ACTION: index"
+//    if (isLoggedIn()) {
+//      redirect uri: '/'
+//    }
+//    else {
+    redirect action: auth, params: params
+//    }
   }
 
   /**
    * Show the login page.
    */
   def auth = {
+    log.info "CONTROLLER: login, ACTION: auth"
 
     nocache response
 
     if (isLoggedIn()) {
-      redirect uri: '/'
+
+      if (authenticateService.ifAllGranted("ROL_ADMINISTRADOR")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+
+        session.user = user
+
+        redirect(controller: "user", action: "asignarol")
+        return
+      } else if (authenticateService.ifAllGranted("ROL_DISTRIBUIDOR")) {
+        redirect(controller: "incidencia", action: "list")
+        return
+      }
+
+      redirect uri: '/logout'
       return
     }
 
     String view
     String postUrl
     def config = authenticateService.securityConfig.security
-    if (config.useOpenId) {
-      view = 'openIdAuth'
-      postUrl = "${request.contextPath}/login/openIdAuthenticate"
-    }
-    else if (config.useFacebook) {
-      view = 'facebookAuth'
-      postUrl = "${request.contextPath}${config.facebook.filterProcessesUrl}"
-    }
-    else {
       view = 'auth'
       postUrl = "${request.contextPath}${config.filterProcessesUrl}"
-//      postUrl = "${request.contextPath}/user/list"
-    }
+
 
     render view: view, model: [postUrl: postUrl]
   }
+
+  def logout = {
+    log.info "User agent: " + request.getHeader("User-Agent")
+    session.invalidate()
+    //session.user = null
+
+    redirect(action: "auth")
+  }
+
 
   /**
    * Form submit action to start an OpenID authentication.
@@ -145,7 +161,7 @@ class LoginController {
         msg = "[$username] is disabled."
       }
       else {
-        msg = "[$username] wrong username/password."
+        msg = "Email o password incorrecto"
       }
     }
 
@@ -169,7 +185,7 @@ class LoginController {
     return authenticateService.isAjax(request)
   }
 
-  /** cache controls  */
+  /** cache controls     */
   private void nocache(response) {
     response.setHeader('Cache-Control', 'no-cache') // HTTP 1.1
     response.addDateHeader('Expires', 0)

@@ -1,4 +1,4 @@
-
+package hwsp
 
 
 
@@ -7,8 +7,8 @@
  */
 class User {
 	static transients = ['pass']
-	static hasMany = [authorities: Role]
-	static belongsTo = Role
+	static hasMany =  [authorities: Role]
+  static belongsTo = Role
 
 	/** User Real Name*/
 	String nombre

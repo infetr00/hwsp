@@ -1,17 +1,16 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>Create User</title>
+	<title>Crear Nuevo Usuario</title>
 </head>
 
 <body>
 
 	<div class="nav">
 		<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-		<span class="menuButton"><g:link class="list" action="list">User List</g:link></span>
 	</div>
 
 	<div class="body">
-		<h1>Create User</h1>
+		<h1>Crear nuevo Usuario</h1>
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 		</g:if>
@@ -53,16 +52,16 @@
 						</td>
 					</tr>
 
-					<tr class="prop">
-						<td valign="top" class="name" align="left">Asignar Roles:</td>
-					</tr>
+					%{--<tr class="prop">--}%
+						%{--<td valign="top" class="name" align="left">Asignar Roles:</td>--}%
+					%{--</tr>--}%
 
-					<g:each in="${authorityList}">
-					<tr>
-						<td valign="top" class="name" align="left">${it.description.encodeAsHTML()}</td>
-						<td align="left"><g:checkBox name="${it.authority}"/></td>
-					</tr>
-					</g:each>
+					%{--<g:each in="${authorityList}">--}%
+					%{--<tr>--}%
+						%{--<td valign="top" class="name" align="left">${it.description.encodeAsHTML()}</td>--}%
+						%{--<td align="left"><g:checkBox name="${it.authority}"/></td>--}%
+					%{--</tr>--}%
+					%{--</g:each>--}%
 
 				</tbody>
 				</table>

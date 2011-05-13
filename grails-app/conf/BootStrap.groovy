@@ -12,6 +12,7 @@ class BootStrap {
         def role = Role.findByAuthority('ROL_ADMINISTRADOR')
 
         if (!role.any()) {
+
           def roleAdministrador = new Role(authority: 'ROL_ADMINISTRADOR', description: 'Administrador').save()
           def roleDistribuidor = new Role(authority: 'ROL_DISTRIBUIDOR', description: 'Distribuidor').save()
           def roleCliente = new Role(authority: 'ROL_CLIENTE', description: 'Cliente').save()
@@ -21,14 +22,23 @@ class BootStrap {
 
           //Adding Users
 
-          def passwordd = authenticateService.passwordEncoder('admin')
+          def passwdEncoded = authenticateService.passwordEncoder('admin')
+          def userAdministrador = new User(nombre: 'admin', email: 'admin@ufv.es', telefono: '', passwd: passwdEncoded).save()
 
-          def userAdministrador = new User(nombre: 'admin', email: 'admin@ufv.es', telefono: '', passwd: passwordd).save()
-          def userDistribuidor = new User(nombre: 'userdistribuidor', email: '', telefono: '', pass: 'userdistribuidor').save()
-          def userCliente = new User(nombre: 'usercliente', email: '', telefono: '', pass: 'usercliente').save()
-          def userCoordinador = new User(nombre: 'usercoordinador', email: '', telefono: '', pass: 'usercoordinador').save()
-          def userTecnico = new User(nombre: 'usertecnico', email: '', telefono: '', pass: 'usertecnico').save()
-          def userCalidad = new User(nombre: 'usercalidad', email: '', telefono: '', pass: 'usercalidad').save()
+          passwdEncoded = authenticateService.passwordEncoder('userdistribuidor')
+          def userDistribuidor = new User(nombre: 'userdistribuidor', email: 'userdistribuidor@ufv.es', telefono: '', passwd: passwdEncoded).save()
+
+          passwdEncoded = authenticateService.passwordEncoder('usercliente')
+          def userCliente = new User(nombre: 'usercliente', email: 'usercliente@ufv.es', telefono: '', passwd: passwdEncoded).save()
+
+          passwdEncoded = authenticateService.passwordEncoder('usercoordinador')
+          def userCoordinador = new User(nombre: 'usercoordinador', email: 'usercoordinador@ufv.es', telefono: '', passwd: passwdEncoded).save()
+
+          passwdEncoded = authenticateService.passwordEncoder('usertecnico')
+          def userTecnico = new User(nombre: 'usertecnico', email: 'usertecnico@ufv.es', telefono: '', passwd: passwdEncoded).save()
+
+          passwdEncoded = authenticateService.passwordEncoder('usercalidad')
+          def userCalidad = new User(nombre: 'usercalidad', email: 'usercalidad@ufv.es', telefono: '', passwd: passwdEncoded).save()
 
           //Note that here we associate users with their respective roles
           roleAdministrador.addToPeople(userAdministrador)
@@ -46,8 +56,8 @@ class BootStrap {
       }
 
 
-//new Requestmap(url: '/login/**', configAttribute: 'IS_AUTHENTICATED_ANONYMOUSLY').save()
-//new Requestmap(url: '/secure/**', configAttribute: 'ROL_ADMIN').save()
+new Requestmap(url: '/login/**', configAttribute: 'IS_AUTHENTICATED_ANONYMOUSLY').save()
+new Requestmap(url: '/secure/**', configAttribute: 'ROL_ADMIN').save()
 
 
     }
