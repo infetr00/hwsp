@@ -1,21 +1,18 @@
+<%@ page import="hwsp.Usuario" %>
 <head>
-  <meta name="layout" content="main"/>
-  <title>Asignar Roles</title>
+	<meta name="layout" content="main" />
+	<title>Usuario List</title>
 </head>
 
 <body>
 
 <div class="nav">
-  <span class="menuButton"><a class="home" href="${createLinkTo(dir: '')}">Inicio</a></span>
-  <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
-  <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span>
-
-
+  <span class="menuButton"><a class="home" href="${createLinkTo(dir: '')}">Home</a></span>
   %{--<g:menuBarControl/>--}%
 </div>
 
 <div class="body">
-  <h1>Asignar Roles</h1>
+  <h1>User List</h1>
   <g:if test="${flash.message}">
     <div class="message">${flash.message}</div>
   </g:if>
@@ -26,7 +23,7 @@
         <g:sortableColumn property="id" title="Id"/>
         <g:sortableColumn property="nombre" title="Nombre"/>
         <g:sortableColumn property="email" title="Email"/>
-        <g:sortableColumn property="telefono" title="Teléfono"/>
+        <g:sortableColumn property="telefono" title="Telefono"/>
         <th>&nbsp;</th>
       </tr>
       </thead>
@@ -39,14 +36,7 @@
           <td>${person.telefono?.encodeAsHTML()}</td>
           <td class="actionButtons">
             <span class="actionButton">
-              <g:if test="${person.authorities.isEmpty()}">
-                <g:link action="editrol" id="${person.id}">Usuario sin roles. Añadir rol</g:link>
-
-              </g:if>
-              <g:else>
-                <g:link action="editrol" id="${person.id}">Editar Roles</g:link>
-              </g:else>
-
+              <g:link action="show" id="${person.id}">Mostrar</g:link>
             </span>
           </td>
         </tr>
@@ -56,7 +46,7 @@
   </div>
 
   <div class="paginateButtons">
-    <g:paginate total="${User.count()}"/>
+    <g:paginate total="${Usuario.count()}"/>
   </div>
 
 </div>

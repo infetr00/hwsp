@@ -1,4 +1,7 @@
 <%response.sendRedirect(request.getContextPath()+"/login/auth");%>
+
+
+
 %{--<html>--}%
     %{--<head>--}%
         %{--<title>Welcome to Grails</title>--}%

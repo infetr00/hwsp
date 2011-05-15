@@ -1,6 +1,5 @@
 package hwsp
 
-
 /**
  * Request Map domain class.
  */

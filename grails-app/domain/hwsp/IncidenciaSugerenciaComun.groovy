@@ -2,6 +2,8 @@ package hwsp
 
 abstract class IncidenciaSugerenciaComun {
 
+
+
   String producto
   String versionInstalada
   String informacionEspecifica
@@ -9,9 +11,12 @@ abstract class IncidenciaSugerenciaComun {
   String email
   String telefono
 
-  Date fecha
-  String nombreDeReportador
+  Date fechaCreacion = new Date();
+  Date fechaModificacion
+
 
   static constraints = {
+    descripcion(size: 0..5000)
+
   }
 }

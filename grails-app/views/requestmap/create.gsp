@@ -33,7 +33,7 @@
 					</tr>
 
 					<tr class="prop">
-						<td valign="top" class="name"><label for="configAttribute">Role (comma-delimited):</label></td>
+						<td valign="top" class="name"><label for="configAttribute">Rol (comma-delimited):</label></td>
 						<td valign="top" class="value ${hasErrors(bean:requestmap,field:'configAttribute','errors')}">
 							<input type="text" id="configAttribute" name="configAttribute" value="${requestmap.configAttribute?.encodeAsHTML()}"/>
 						</td>

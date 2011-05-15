@@ -2,16 +2,22 @@ package hwsp
 
 class Incidencia extends IncidenciaSugerenciaComun {
 
-  static tipoDeIncidenciaEnum = ['Instalacion', 'Configuracion', 'Funcionalidad', 'Base de datos', 'Codigo', 'Generica']
-  static estadoDeIncidenciaEnum = ['Reportada', 'En curso', 'Cerrada']
+  static hasMany = [eventos: EventoIncidencia]
+  static belongsTo = [usuario: Usuario]
 
-  static hasOne = [user: User]
 
   String tipoDeIncidencia
-  String estadoDeIncidencia
+  String estadoDeIncidencia = "Reportada"
+  String importancia = "Sin prioridad"
+
+  Usuario tecnicoAsignado
+
 
   static constraints = {
-    tipoDeIncidencia(nullable: false, inList: tipoDeIncidenciaEnum)
-    estadoDeIncidencia(nullable: false, inList: estadoDeIncidenciaEnum)
+    tipoDeIncidencia(nullable: false, inList: ['Instalacion', 'Configuracion', 'Funcionalidad', 'Base de datos', 'Codigo', 'Generica'])
+    estadoDeIncidencia(nullable: false, inList: ['Reportada', 'En curso', 'Cerrada'])
+    importancia (inList: ['Sin prioridad', 'Baja', 'Media', 'Alta'])
+    tecnicoAsignado (nullable: true)
+
   }
 }

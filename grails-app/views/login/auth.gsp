@@ -92,7 +92,7 @@
       </p>
     </form>
   </div>
-  <span id='signup'>No tienes cuenta de usuario? <g:link controller="user" action="create"> Crea una nueva aquí.</g:link></span>
+  <span id='signup'>No tienes cuenta de usuario? <g:link controller="usuario" action="create">Crea una nueva aquí.</g:link></span>
 </div>
 
 
