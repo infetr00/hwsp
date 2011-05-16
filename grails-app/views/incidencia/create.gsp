@@ -8,8 +8,11 @@
 </head>
 <body>
 <div class="nav">
-  <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-  <span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></span>
+  <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Inicio</a></span>
+  %{--<span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></span>--}%
+  <span class="menuButton"><g:link class="list" action="list">Lista de Incidencias</g:link></span>
+  <span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>
+
 </div>
 <div class="body">
   <h1>Reportar nueva incidencia</h1>
@@ -150,7 +153,7 @@
       </table>
     </div>
     <div class="buttons">
-      <span class="button"><g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}"/></span>
+      <span class="button"><g:submitButton name="create" class="save" action="save" value="Reportar"/></span>
     </div>
   </g:form>
 </div>

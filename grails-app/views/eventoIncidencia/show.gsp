@@ -21,7 +21,9 @@
             <div class="dialog">
                 <table>
                     <tbody>
-                    
+
+
+
                         <tr class="prop">
                             <td valign="top" class="name"><g:message code="eventoIncidencia.id.label" default="Id" /></td>
                             

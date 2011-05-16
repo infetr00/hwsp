@@ -52,12 +52,17 @@ class LoginController {
 
       if (authenticateService.ifAllGranted("ROL_ADMINISTRADOR")) {
         def user = User.findByEmail(authenticateService.principal().username)
-
         session.user = user
-
         redirect(controller: "user", action: "asignarol")
         return
       } else if (authenticateService.ifAllGranted("ROL_DISTRIBUIDOR")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+        session.user = user
+        redirect(controller: "incidencia", action: "list")
+        return
+      } else if (authenticateService.ifAllGranted("ROL_CLIENTE")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+        session.user = user
         redirect(controller: "incidencia", action: "list")
         return
       }

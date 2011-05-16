@@ -2,6 +2,8 @@ package hwsp
 
 class Evento {
 
+  User user
+
   String descripcion
 
   Date fechaCreacion
