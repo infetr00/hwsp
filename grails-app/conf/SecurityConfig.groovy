@@ -4,7 +4,7 @@ security {
 
 	active = true
 
-	loginUserDomainClass = "hwsp.Usuario"
-	authorityDomainClass = "hwsp.Rol"
+	loginUserDomainClass = "hwsp.User"
+	authorityDomainClass = "hwsp.Role"
 	requestMapClass = "hwsp.Requestmap"
 }

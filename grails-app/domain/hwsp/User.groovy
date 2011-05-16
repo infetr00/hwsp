@@ -1,15 +1,14 @@
 package hwsp
 
-import hwsp.Rol
+import hwsp.Role
 
 /**
  * User domain class.
  */
-class Usuario {
-
-  static transients = ['pass']
-  static hasMany = [authorities: Rol, incidencias: Incidencia, sugerencias: Sugerencia]
-  static belongsTo = Rol
+class User {
+	 static transients = ['pass']
+  static hasMany = [authorities: Role, incidencias: Incidencia, sugerencias: Sugerencia]
+  static belongsTo = Role
 
   /** hwsp.User Real Name */
   String nombre
@@ -29,6 +28,4 @@ class Usuario {
     email(blank: false, unique: true, email: true)
     passwd(blank: false)
   }
-
-
 }

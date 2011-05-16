@@ -1,6 +1,6 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>Create Usuario</title>
+	<title>Crear Nuevo Usuario</title>
 </head>
 
 <body>

@@ -1,13 +1,14 @@
 package hwsp
 
-abstract class Evento {
+class Evento {
 
-String descripcion
+  String descripcion
 
   Date fechaCreacion
 
-    static constraints = {
-      descripcion(size: 0..5000)
+  static constraints = {
+    descripcion(size: 0..5000)
 
-    }
+  }
+
 }

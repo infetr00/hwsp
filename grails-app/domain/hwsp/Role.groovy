@@ -1,13 +1,13 @@
 package hwsp
 
-import hwsp.Usuario
+import hwsp.User
 
 /**
  * Authority domain class.
  */
-class Rol {
+class Role {
 
-	static hasMany = [people: Usuario]
+	static hasMany = [people: User]
 
 	/** description */
 	String description

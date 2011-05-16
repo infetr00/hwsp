@@ -1,16 +1,16 @@
 package hwsp
 
-class Incidencia extends IncidenciaSugerenciaComun {
+class Incidencia extends IncidenciaSugerenciaComun{
 
-  static hasMany = [eventos: EventoIncidencia]
-  static belongsTo = [usuario: Usuario]
+   static hasMany = [eventos: EventoIncidencia]
+  static belongsTo = [user: User]
 
 
   String tipoDeIncidencia
   String estadoDeIncidencia = "Reportada"
   String importancia = "Sin prioridad"
 
-  Usuario tecnicoAsignado
+  User tecnicoAsignado
 
 
   static constraints = {

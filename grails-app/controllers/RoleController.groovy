@@ -1,10 +1,10 @@
-import hwsp.Rol
+import hwsp.Role
 import hwsp.Requestmap
 
 /**
  * Authority Controller.
  */
-class RolController {
+class RoleController {
 
 	// the delete, save and update actions only accept POST requests
 	static Map allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
@@ -22,16 +22,16 @@ class RolController {
 		if (!params.max) {
 			params.max = 10
 		}
-		[authorityList: Rol.list(params)]
+		[authorityList: Role.list(params)]
 	}
 
 	/**
 	 * Display the show authority page.
 	 */
 	def show = {
-		def authority = Rol.get(params.id)
+		def authority = Role.get(params.id)
 		if (!authority) {
-			flash.message = "Rol not found with id $params.id"
+			flash.message = "Role not found with id $params.id"
 			redirect action: list
 			return
 		}
@@ -43,16 +43,16 @@ class RolController {
 	 * Delete an authority.
 	 */
 	def delete = {
-		def authority = Rol.get(params.id)
+		def authority = Role.get(params.id)
 		if (!authority) {
-			flash.message = "Rol not found with id $params.id"
+			flash.message = "Role not found with id $params.id"
 			redirect action: list
 			return
 		}
 
 		authenticateService.deleteRole(authority)
 
-		flash.message = "Rol $params.id deleted."
+		flash.message = "Role $params.id deleted."
 		redirect action: list
 	}
 
@@ -60,9 +60,9 @@ class RolController {
 	 * Display the edit authority page.
 	 */
 	def edit = {
-		def authority = Rol.get(params.id)
+		def authority = Role.get(params.id)
 		if (!authority) {
-			flash.message = "Rol not found with id $params.id"
+			flash.message = "Role not found with id $params.id"
 			redirect action: list
 			return
 		}
@@ -75,9 +75,9 @@ class RolController {
 	 */
 	def update = {
 
-		def authority = Rol.get(params.id)
+		def authority = Role.get(params.id)
 		if (!authority) {
-			flash.message = "Rol not found with id $params.id"
+			flash.message = "Role not found with id $params.id"
 			redirect action: edit, id: params.id
 			return
 		}
@@ -85,7 +85,7 @@ class RolController {
 		long version = params.version.toLong()
 		if (authority.version > version) {
 			authority.errors.rejectValue 'version', 'authority.optimistic.locking.failure',
-				'Another user has updated this Rol while you were editing.'
+				'Another user has updated this Role while you were editing.'
 			render view: 'edit', model: [authority: authority]
 			return
 		}
@@ -103,7 +103,7 @@ class RolController {
 	 * Display the create new authority page.
 	 */
 	def create = {
-		[authority: new Rol()]
+		[authority: new Role()]
 	}
 
 	/**
@@ -111,7 +111,7 @@ class RolController {
 	 */
 	def save = {
 
-		def authority = new Rol()
+		def authority = new Role()
 		authority.properties = params
 		if (authority.save()) {
 			redirect action: show, id: authority.id

@@ -1,18 +1,18 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>Show Rol</title>
+	<title>Show Role</title>
 </head>
 
 <body>
 
 	<div class="nav">
 		<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-		<span class="menuButton"><g:link class="list" action="list">Rol List</g:link></span>
-		<span class="menuButton"><g:link class="create" action="create">New Rol</g:link></span>
+		<span class="menuButton"><g:link class="list" action="list">Role List</g:link></span>
+		<span class="menuButton"><g:link class="create" action="create">New Role</g:link></span>
 	</div>
 
 	<div class="body">
-		<h1>Show Rol</h1>
+		<h1>Show Role</h1>
 		<g:if test="${flash.message}">
 		<div class="message">${flash.message}</div>
 		</g:if>
@@ -26,7 +26,7 @@
 				</tr>
 
 				<tr class="prop">
-					<td valign="top" class="name">Rol Name:</td>
+					<td valign="top" class="name">Role Name:</td>
 					<td valign="top" class="value">${authority.authority}</td>
 				</tr>
 

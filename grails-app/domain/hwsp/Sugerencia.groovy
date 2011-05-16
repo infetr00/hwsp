@@ -2,8 +2,9 @@ package hwsp
 
 class Sugerencia extends IncidenciaSugerenciaComun {
 
-//  static hasMany = [eventos: EventoSugerencia]
-  static belongsTo = [usuario: Usuario]
+
+ static hasMany = [eventos: EventoSugerencia]
+  static belongsTo = [user: User]
 
   String tipoDeSugerencia
   String estadoDeSugerencia

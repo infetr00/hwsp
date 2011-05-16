@@ -1,8 +1,6 @@
 package hwsp
 
-abstract class IncidenciaSugerenciaComun {
-
-
+class IncidenciaSugerenciaComun {
 
   String producto
   String versionInstalada

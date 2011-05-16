@@ -1,12 +1,10 @@
 package hwsp
 
-class EventoIncidencia extends Evento {
+class EventoIncidencia extends Evento{
 
   static belongsTo = [incidencia: Incidencia]
 
-  static constraints = {
 
-  }
-
-
+    static constraints = {
+    }
 }

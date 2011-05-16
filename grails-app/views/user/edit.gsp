@@ -1,6 +1,6 @@
 <head>
 	<meta name="layout" content="main" />
-	<title>Edit Usuario</title>
+	<title>Edit User</title>
 </head>
 
 <body>
