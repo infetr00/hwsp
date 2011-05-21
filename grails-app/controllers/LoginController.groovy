@@ -65,6 +65,21 @@ class LoginController {
         session.user = user
         redirect(controller: "incidencia", action: "list")
         return
+      }else if (authenticateService.ifAllGranted("ROL_COORDINADOR")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+        session.user = user
+        redirect(controller: "incidencia", action: "listcoordinador")
+        return
+      }else if (authenticateService.ifAllGranted("ROL_TECNICO")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+        session.user = user
+        redirect(controller: "incidencia", action: "listtecnico")
+        return
+      }else if (authenticateService.ifAllGranted("ROL_CALIDAD")) {
+        def user = User.findByEmail(authenticateService.principal().username)
+        session.user = user
+        redirect(controller: "incidencia", action: "listcalidad")
+        return
       }
 
       redirect uri: '/logout'
@@ -166,7 +181,7 @@ class LoginController {
         msg = "[$username] is disabled."
       }
       else {
-        msg = "[$username] wrong username/password."
+        msg = "[$username] email o password incorrecto o pendiente de asignacion de rol"
       }
     }
 

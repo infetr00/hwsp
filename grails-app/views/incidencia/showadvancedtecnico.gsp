@@ -9,12 +9,12 @@
 <body>
 <div class="nav">
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Inicio</a></span>
-  <span class="menuButton"><g:link class="list" action="list">Lista de Incidencias</g:link></span>
-  <span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>
-  <span class="menuButton"><g:link class="create" action="create">Reportar Incidencia</g:link></span>
-  <span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>
+  <span class="menuButton"><g:link class="list" action="listtecnico">Lista de Incidencias</g:link></span>
+  %{--<span class="menuButton"><g:link class="list" controller="sugerencia" action="listtecnico">Lista de Sugerencias</g:link></span>--}%
   <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
   <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span>
+  %{--<span class="menuButton"><g:link class="create" action="create">Reportar Incidencia</g:link></span>--}%
+  %{--<span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>--}%
 
 </div>
 <div class="body">
@@ -122,7 +122,7 @@
       <tr class="prop">
         <td valign="top" class="name"><g:message code="incidencia.tecnicoAsignado.label" default="Tecnico Asignado"/></td>
 
-        <td valign="top" class="value">${incidenciaInstance?.tecnicoAsignado?.nombre?.encodeAsHTML()}</td>
+        <td valign="top" class="value">${incidenciaInstance.tecnicoAsignado.nombre.encodeAsHTML()}</td>
 
       </tr>
 
@@ -148,8 +148,7 @@
     %{--<span class="button"><g:actionSubmit class="edit" action="edit" value="${message(code: 'default.button.edit.label', default: 'Edit')}"/></span>--}%
     %{--<span class="button"><g:actionSubmit class="delete" action="delete" value="${message(code: 'default.button.delete.label', default: 'Delete')}" onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/></span>--}%
       <span class="button"><g:actionSubmit class="edit" action="addevento" value="Añadir evento"/></span>
-
-    %{--<span class="button"><g:actionSubmit class="edit" action="addeventoycierra" value="Cerrar Incidencia"/></span--}%
+      <span class="button"><g:actionSubmit class="edit" action="addeventoycierra" value="Cerrar Incidencia"/></span
     </g:form>
   </div>
 </div>

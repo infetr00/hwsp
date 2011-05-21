@@ -28,6 +28,7 @@
         <g:sortableColumn property="nombre" title="Nombre"/>
         <g:sortableColumn property="email" title="Email"/>
         <g:sortableColumn property="telefono" title="Teléfono"/>
+        %{--<g:sortableColumn property="authorities" title= "Rol"/>--}%
         <th>&nbsp;</th>
       </tr>
       </thead>
@@ -38,6 +39,8 @@
           <td>${person.nombre?.encodeAsHTML()}</td>
           <td>${person.email?.encodeAsHTML()}</td>
           <td>${person.telefono?.encodeAsHTML()}</td>
+
+          %{--<td>${person.authorities.get(0).description}</td>--}%
           <td class="actionButtons">
             <span class="actionButton">
               <g:if test="${person.authorities.isEmpty()}">

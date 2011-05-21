@@ -83,7 +83,7 @@
 
     <div class="buttons">
       <span class="button"><g:actionSubmit class="save" action="updaterol" value="Actualiza"/></span>
-      <span class="button"><g:actionSubmit class="delete" action="deleterol" onclick="return confirm('¿Estás seguro?');" value="Borrar Usuario"/></span>
+      %{--<span class="button"><g:actionSubmit class="delete" action="deleterol" onclick="return confirm('¿Estás seguro?');" value="Borrar Usuario"/></span>--}%
     </div>
 
   </g:form>

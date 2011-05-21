@@ -9,15 +9,15 @@
 <body>
 <div class="nav">
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Inicio</a></span>
-  <span class="menuButton"><g:link class="list" action="list">Lista de Incidencias</g:link></span>
-  <span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>
-  <span class="menuButton"><g:link class="create" action="create">Reportar Incidencia</g:link></span>
-  <span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>
+  <span class="menuButton"><g:link class="list" action="listcoordinador">Lista de Incidencias sin asignar</g:link></span>
+  %{--<span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>--}%
+  %{--<span class="menuButton"><g:link class="create" action="create">Reportar Incidencia</g:link></span>--}%
+  %{--<span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>--}%
   <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
   <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span>
 </div>
 <div class="body">
-  <h1>Lista de Incidencias</h1>
+  <h1>Incidencias sin tecnicos asignados</h1>
   <g:if test="${flash.message}">
     <div class="message">${flash.message}</div>
   </g:if>
@@ -41,10 +41,11 @@
       </tr>
       </thead>
       <tbody>
+
       <g:each in="${incidenciaInstanceList}" status="i" var="incidenciaInstance">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-          <td><g:link action="showadvanced" id="${incidenciaInstance.id}">${fieldValue(bean: incidenciaInstance, field: "id")}</g:link></td>
+          <td><g:link action="showadvancedcoordinador" id="${incidenciaInstance.id}">${fieldValue(bean: incidenciaInstance, field: "id")}</g:link></td>
 
           <td>${fieldValue(bean: incidenciaInstance, field: "descripcion")}</td>
 
@@ -54,14 +55,18 @@
 
           <td>${fieldValue(bean: incidenciaInstance, field: "importancia")}</td>
 
-          <td>${incidenciaInstance.tecnicoAsignado?.nombre?.encodeAsHTML()}</td>
+          <g:if test="${incidenciaInstance.tecnicoAsignado==null}">
+            <td><g:link action="asignatecnico" id="${incidenciaInstance.id}">Asigna un Tecnico</g:link></td>
+          </g:if>
+          <g:else>
+            <td>${fieldValue(bean: incidenciaInstance, field: "tecnicoAsignado")}</td>
+          </g:else>
 
         </tr>
       </g:each>
       </tbody>
     </table>
   </div>
-
 </div>
 </body>
 </html>

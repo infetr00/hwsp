@@ -9,10 +9,8 @@
 <body>
 <div class="nav">
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Inicio</a></span>
-  <span class="menuButton"><g:link class="list" controller="incidencia" action="list">Lista de Incidencias</g:link></span>
-  <span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>
-  <span class="menuButton"><g:link class="create" controller="incidencia" action="create">Reportar Incidencia</g:link></span>
-  <span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>
+  <span class="menuButton"><g:link class="list" controller="incidencia" action="listtecnico">Lista de Incidencias</g:link></span>
+  <span class="menuButton"><g:link class="list" controller="sugerencia" action="listtecnico">Lista de Sugerencias</g:link></span>
   <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
   <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span></div>
 <div class="body">
@@ -43,7 +41,7 @@
       <g:each in="${sugerenciaInstanceList}" status="i" var="sugerenciaInstance">
         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
 
-          <td><g:link action="showadvanced" id="${sugerenciaInstance.id}">${fieldValue(bean: sugerenciaInstance, field: "id")}</g:link></td>
+          <td><g:link action="showadvancedtecnico" id="${sugerenciaInstance.id}">${fieldValue(bean: sugerenciaInstance, field: "id")}</g:link></td>
 
           <td>${fieldValue(bean: sugerenciaInstance, field: "descripcion")}</td>
 

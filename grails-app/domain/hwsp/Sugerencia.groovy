@@ -7,8 +7,8 @@ class Sugerencia extends IncidenciaSugerenciaComun {
   static belongsTo = [user: User]
 
   String tipoDeSugerencia
-  String estadoDeSugerencia
-  String prioridad
+  String estadoDeSugerencia = "Reportada"
+  String prioridad = "Sin prioridad"
 
   static constraints = {
     tipoDeSugerencia(nullable: false, inList: ['Instalacion', 'Configuracion', 'Funcionalidad', 'Generica'])

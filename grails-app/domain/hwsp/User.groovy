@@ -28,4 +28,7 @@ class User {
     email(blank: false, unique: true, email: true)
     passwd(blank: false)
   }
+
+
+
 }

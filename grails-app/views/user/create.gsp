@@ -6,7 +6,7 @@
 <body>
 
 	<div class="nav">
-		<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
+		<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Inicio</a></span>
 	</div>
 
 	<div class="body">
@@ -68,7 +68,7 @@
 			</div>
 
 			<div class="buttons">
-				<span class="button"><input class="save" type="submit" value="Create" /></span>
+				<span class="button"><input class="save" type="submit" action="save" value="Crear" /></span>
 			</div>
 
 		</g:form>

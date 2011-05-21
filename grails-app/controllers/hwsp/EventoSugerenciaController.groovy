@@ -15,6 +15,7 @@ class EventoSugerenciaController {
 
   def create = {
     def eventoSugerenciaInstance = new EventoSugerencia()
+    eventoSugerenciaInstance.sugerencia = Sugerencia.findById(params.id)
     eventoSugerenciaInstance.user = session.user
     eventoSugerenciaInstance.properties = params
     return [eventoSugerenciaInstance: eventoSugerenciaInstance]
@@ -22,10 +23,12 @@ class EventoSugerenciaController {
 
   def save = {
     def eventoSugerenciaInstance = new EventoSugerencia(params)
+    eventoSugerenciaInstance.fechaCreacion = new Date()
     eventoSugerenciaInstance.user = session.user
+    eventoSugerenciaInstance.sugerencia = Sugerencia.findById(params.sugerencia.id)
     if (eventoSugerenciaInstance.save(flush: true)) {
       flash.message = "${message(code: 'default.created.message', args: [message(code: 'eventoSugerencia.label', default: 'EventoSugerencia'), eventoSugerenciaInstance.id])}"
-      redirect(action: "show", id: eventoSugerenciaInstance.id)
+      redirect(controller: "sugerencia", action: "showadvanced", id: eventoSugerenciaInstance.sugerencia.id)
     }
     else {
       render(view: "create", model: [eventoSugerenciaInstance: eventoSugerenciaInstance])

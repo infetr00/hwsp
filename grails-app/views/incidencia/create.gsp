@@ -12,6 +12,8 @@
   %{--<span class="menuButton"><g:link class="list" action="list"><g:message code="default.list.label" args="[entityName]"/></g:link></span>--}%
   <span class="menuButton"><g:link class="list" action="list">Lista de Incidencias</g:link></span>
   <span class="menuButton"><g:link class="list" controller="sugerencia" action="list">Lista de Sugerencias</g:link></span>
+  <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
+  <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span></div>
 
 </div>
 <div class="body">
@@ -76,14 +78,7 @@
         %{--</td>--}%
         %{--</tr>--}%
 
-        <tr class="prop">
-          <td valign="top" class="name">
-            <label for="email"><g:message code="incidencia.email.label" default="Email"/></label>
-          </td>
-          <td valign="top" class="value ${hasErrors(bean: incidenciaInstance, field: 'email', 'errors')}">
-            <g:textField name="email" value="${incidenciaInstance?.email}"/>
-          </td>
-        </tr>
+
 
         %{--<tr class="prop">--}%
         %{--<td valign="top" class="name">--}%
@@ -130,6 +125,14 @@
           </td>
         </tr>
 
+         <tr class="prop">
+          <td valign="top" class="name">
+            <label for="email"><g:message code="incidencia.email.label" default="Email"/></label>
+          </td>
+          <td valign="top" class="value ${hasErrors(bean: incidenciaInstance, field: 'email', 'errors')}">
+            <g:textField name="email" value="${incidenciaInstance?.email}"/>
+          </td>
+        </tr>
 
         <tr class="prop">
           <td valign="top" class="name">
