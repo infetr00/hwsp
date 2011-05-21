@@ -22,8 +22,8 @@ class BootStrap {
 
           //Adding Users
 
-          def passwdEncoded = authenticateService.passwordEncoder('admin')
-          def userAdministrador = new User(nombre: 'admin', email: 'admin@ufv.es', telefono: '', passwd: passwdEncoded).save()
+          def passwdEncoded = authenticateService.passwordEncoder('useradmin')
+          def userAdministrador = new User(nombre: 'useradmin', email: 'useradmin@ufv.es', telefono: '', passwd: passwdEncoded).save()
 
           passwdEncoded = authenticateService.passwordEncoder('userdistribuidor')
           def userDistribuidor = new User(nombre: 'userdistribuidor', email: 'userdistribuidor@ufv.es', telefono: '', passwd: passwdEncoded).save()
