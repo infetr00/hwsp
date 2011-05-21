@@ -11,8 +11,6 @@
   <span class="menuButton"><a class="home" href="${createLink(uri: '/')}">Inicio</a></span>
   <span class="menuButton"><g:link class="list" action="listcalidad">Lista de Incidencias</g:link></span>
   <span class="menuButton"><g:link class="list" controller="sugerencia" action="listcalidad">Lista de Sugerencias</g:link></span>
-  <span class="menuButton"><g:link class="create" action="create">Reportar Incidencia</g:link></span>
-  <span class="menuButton"><g:link class="create" controller="sugerencia" action="create">Reportar Sugerencia</g:link></span>
   <span class="menuButton"><a class="logout" href="${request.contextPath}/login/logout">Salir</a></span>
   <span class="menuButtonHola"><a class="hola">Hola ${session.user.nombre}!</a></span>
 </div>

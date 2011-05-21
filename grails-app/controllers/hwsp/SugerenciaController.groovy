@@ -18,6 +18,11 @@ class SugerenciaController {
     [sugerenciaInstanceList: Sugerencia.list(), sugerenciaInstanceTotal: Sugerencia.count()]
   }
 
+  def listcalidad = {
+//    params.max = Math.min(params.max ? params.int('max') : 10, 100)
+    [sugerenciaInstanceList: Sugerencia.list(), sugerenciaInstanceTotal: Sugerencia.count()]
+  }
+
   def create = {
     def sugerenciaInstance = new Sugerencia()
     sugerenciaInstance.properties = params
