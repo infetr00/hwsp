@@ -1,3 +1,5 @@
+package hwsp
+
 import javax.mail.MessagingException
 
 import org.springframework.mail.MailException
@@ -29,7 +31,7 @@ class EmailerService {
 		def messages = []
 		for (mail in mails) {
 			// create a copy of the default message
-			def message = new SimpleMailMessage(mailMessage)
+			def message = new SimpleMailMessage()
 			message.to = mail.to
 			message.text = mail.text
 			message.subject = mail.subject

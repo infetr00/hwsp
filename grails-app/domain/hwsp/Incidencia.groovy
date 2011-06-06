@@ -1,6 +1,6 @@
 package hwsp
 
-class Incidencia extends IncidenciaSugerenciaComun{
+class Incidencia extends IncidenciaSugerenciaComun {
 
    static hasMany = [eventos: EventoIncidencia]
   static belongsTo = [user: User]

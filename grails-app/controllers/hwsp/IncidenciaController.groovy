@@ -2,6 +2,8 @@ package hwsp
 
 class IncidenciaController {
 
+  EmailerService emailerService
+
   static allowedMethods = [save: "POST", update: "POST", delete: "POST", addevento: "POST"]
 
   def index = {
@@ -112,6 +114,8 @@ class IncidenciaController {
 
     incidenciaInstance.estadoDeIncidencia = "Cerrada"
     incidenciaInstance.save(flush: true)
+    enviarMailACliente(incidenciaInstance.id, incidenciaInstance.user.email)
+    flash.message = "Se ha enviado un mail al cliente comunicando el cierre de la incidencia"
     redirect(controller: "eventoIncidencia", action: "create", id: params.id)
   }
 
@@ -141,7 +145,7 @@ class IncidenciaController {
       incidenciaInstance.properties = params
       if (incidenciaInstance.tecnicoAsignado == null || incidenciaInstance.importancia == "Sin importancia") {
         flash.message = "Debes asignar un tecnico y una importancia a la incidencia"
-        render(view: "edit", model: [incidenciaInstance: incidenciaInstance])
+        render(view: "edit", model: [incidenciaInstance : incidenciaInstance])
         return
       }
 
@@ -195,8 +199,13 @@ class IncidenciaController {
       incidenciaInstance.eventos.add(eventoIncidencia)
       incidenciaInstance.estadoDeIncidencia = "En curso"
 
+
+
       if (!incidenciaInstance.hasErrors() && incidenciaInstance.save(flush: true)) {
         flash.message = "${message(code: 'default.updated.message', args: [message(code: 'incidencia.label', default: 'Incidencia'), incidenciaInstance.id])}"
+        enviarMailACalidad(incidenciaInstance.id, incidenciaInstance.tecnicoAsignado.nombre)
+        flash.message = "Se ha enviado un mail a los responsables de calidad"
+
         redirect(action: "listcoordinador", id: incidenciaInstance.id)
       }
       else {
@@ -260,5 +269,46 @@ class IncidenciaController {
     }
     return false
   }
+
+  def getUsuariosDeCalidad = {
+    def calidadList = []
+//    for (User user in User.list()) {
+//      for (Role role in user.authorities) {
+//        if (role.authority.equals('ROL_CALIDAD')) calidadList.add user.email
+//      }
+//
+//    }
+
+    calidadList.add "quiqueredondo@gmail.com"
+
+    return calidadList
+  }
+
+  def enviarMailACalidad = {long idIncidencia, String nombreDelTecnico->
+// Each "email" is a simple Map
+    def email = [
+            to: getUsuariosDeCalidad(),        // "to" expects a List, NOT a single email address
+            subject: "Incidencia asignada a tecnico",
+            text: "Hola, \n\nSe ha asignado el tecnico ${nombreDelTecnico} a la incidencia ${idIncidencia}"         // "text" is the email body
+    ]
+    // sendEmails expects a List
+    emailerService.sendEmails([email])
+
+
+  }
+
+def enviarMailACliente = {long idIncidencia, String emailCliente ->
+// Each "email" is a simple Map
+    def email = [
+            to: [emailCliente],        // "to" expects a List, NOT a single email address
+            subject: "Incidencia asignada a tecnico",
+            text: "Hola, \n\nLe comunicamos que la incidencia ${idIncidencia} ha sido cerrada"         // "text" is the email body
+    ]
+    // sendEmails expects a List
+    emailerService.sendEmails([email])
+
+
+  }
+
 
 }

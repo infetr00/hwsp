@@ -27,8 +27,13 @@ class EventoIncidenciaController {
     eventoIncidenciaInstance.user = session.user
     eventoIncidenciaInstance.incidencia = Incidencia.findById(params.incidencia.id)
     if (eventoIncidenciaInstance.save(flush: true)) {
+      if (isTecnico) {
+        flash.message = "${message(code: 'default.created.message', args: [message(code: 'eventoIncidencia.label', default: 'EventoIncidencia'), eventoIncidenciaInstance.id])}"
+        redirect(controller: "incidencia", action: "showadvancedtecnico", id: eventoIncidenciaInstance.incidencia.id)
+        return
+      }
       flash.message = "${message(code: 'default.created.message', args: [message(code: 'eventoIncidencia.label', default: 'EventoIncidencia'), eventoIncidenciaInstance.id])}"
-      redirect(controller:"incidencia", action: "showadvanced", id: eventoIncidenciaInstance.incidencia.id)
+      redirect(controller: "incidencia", action: "showadvanced", id: eventoIncidenciaInstance.incidencia.id)
     }
     else {
       render(view: "create", model: [eventoIncidenciaInstance: eventoIncidenciaInstance])
@@ -102,4 +107,12 @@ class EventoIncidenciaController {
       redirect(action: "list")
     }
   }
+
+  def isTecnico = {
+    for (Role role in session.user.authorities) {
+      if (role.authority.equals('ROL_TECNICO')) return true
+    }
+    return false
+  }
+
 }
