@@ -272,15 +272,12 @@ class IncidenciaController {
 
   def getUsuariosDeCalidad = {
     def calidadList = []
-//    for (User user in User.list()) {
-//      for (Role role in user.authorities) {
-//        if (role.authority.equals('ROL_CALIDAD')) calidadList.add user.email
-//      }
-//
-//    }
+    for (User user in User.list()) {
+      for (Role role in user.authorities) {
+        if (role.authority.equals('ROL_CALIDAD')) calidadList.add user.email
+      }
 
-    calidadList.add "quiqueredondo@gmail.com"
-
+    }
     return calidadList
   }
 
